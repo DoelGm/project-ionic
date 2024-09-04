@@ -1,0 +1,13 @@
+.toolbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+    width: 100%;
+  }
+  
+  #user-name-tolbar {
+    margin-right: 10px; /* Ajusta el espacio entre el nombre de usuario y el botón */
+    font-size: 16px; /* Ajusta el tamaño del texto si es necesario */
+    color: #ffffff; /* Color del texto */
+  }
+  

@@ -1,0 +1,43 @@
+html, body {
+    height: 100%; /* Asegura que el contenedor tome toda la altura de la pantalla */
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye los elementos a través de toda la pantalla */
+    align-items: center;
+    height: 100%; /* Altura completa de la pantalla */
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+#welcome-title {
+    font-size: 60px; /* Tamaño de la fuente para el título */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 20px 0; /* Un pequeño margen superior e inferior */
+}
+
+#welcome-img {
+    max-width: 100%;
+    height: auto;
+    margin: 100px 0; /* Margen para mantener la imagen centrada verticalmente */
+    
+}
+
+ion-button, #welcome-p {
+    width: 100%; /* Asegura que el botón ocupe todo el ancho */
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+ion-button {
+    margin-top: 150px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#welcome-p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

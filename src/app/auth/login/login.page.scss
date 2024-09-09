@@ -1,0 +1,9 @@
+
+body{
+    $gradient-start: #434343;
+    $gradient-end: black;
+    
+    background-image: linear-gradient(to right, $gradient-start 0%, $gradient-end 100%);
+    
+    
+}

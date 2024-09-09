@@ -11,6 +11,19 @@ html, body {
     height: 100%; /* Altura completa de la pantalla */
     padding: 20px;
     padding-bottom: 40px;
+
+
+    $linear-gradient-start: rgba(255, 255, 255, 0.15);
+    $linear-gradient-end: rgba(0, 0, 0, 0.15);
+    $radial-gradient-start: rgba(255, 255, 255, 0.40);
+    $radial-gradient-end: rgba(0, 0, 0, 0.40);
+    $background-color: #989898;
+
+    background: 
+    linear-gradient(to bottom, $linear-gradient-start 0%, $linear-gradient-end 100%),
+    radial-gradient(at top center, $radial-gradient-start 0%, $radial-gradient-end 120%),
+    $background-color;
+    background-blend-mode: multiply;
 }
 
 #welcome-title {

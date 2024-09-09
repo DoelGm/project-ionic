@@ -1,13 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
+<body>
+  <ion-header>
+    <ion-buttons  slot="start">
+      <ion-back-button defaultHref="/welcome"></ion-back-button>
+      <h3>Register</h3>
+    </ion-buttons>  
   </ion-header>
-</ion-content>
+
+  <div class="ion-padding">
+    <ion-card >
+      <ion-text color="dark">
+        <h1 class="ion-padding">Registrate</h1>
+      </ion-text>
+      <h2 class="ion-padding">Crea una cuenta de forma gratuita</h2>
+    
+        <ion-input class="ion-padding" color="dark" label="Email" labelPlacement="floating" placeholder="Ingresa tu email"></ion-input>
+        <ion-input class="ion-padding" color="dark" label="Contraseña" labelPlacement="floating" placeholder="Ingresa tu contraseña"></ion-input>
+        <ion-input class="ion-padding" color="dark" label="Confirmar contraseña" labelPlacement="floating" placeholder="Confirma tu contraseña"></ion-input>
+        
+      <ion-button class="ion-padding"  expand="block" color="dark">Registrar</ion-button>
+      
+      <p class="ion-text-end ion-padding">¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesion</a></p>
+     </ion-card>
+  </div>
+ 
+  
+</body>

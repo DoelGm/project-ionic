@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/welcome/welcome.module').then( m => m.WelcomePageModule)
   },
   {
+    path: 'welcome',
+    loadChildren: () => import('./auth/welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./auth/login/login.module').then(m => m.LoginPageModule)  // Importa correctamente el módulo
   },
@@ -14,7 +18,15 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./auth/register/register.module').then( m => m.RegisterPageModule)
   },
- 
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'recover-password',
+    loadChildren: () => import('./auth/recover-password/recover-password.module').then( m => m.RecoverPasswordPageModule)
+  },
+
 ];
 
 @NgModule({

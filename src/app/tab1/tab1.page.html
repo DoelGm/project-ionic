@@ -1,29 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title slot="start">
-      Home
-    </ion-title>
-    <div class="toolbar-content">
-      <h3 id="user-name-tolbar">User name</h3>
-      <ion-button slot="end">
-        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-      </ion-button>
-    </div>
-  </ion-toolbar>
-</ion-header>
-
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Home</ion-title>
-      
-      <ion-button>
-        <ion-icon slot="icon-only" name="person-circle"></ion-icon>
-      </ion-button>
-      
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Home"></app-explore-container>
+<ion-content>
+  <app-header title="Home"></app-header>
+  <app-card-notes class="ion-padding" date="Lunes"></app-card-notes>
+  <app-card-notes class="ion-padding" date="Martes"></app-card-notes>
+  <app-card-notes class="ion-padding" date="Miercoles"></app-card-notes> -->
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -1,0 +1,12 @@
+<ion-content>
+  <app-header title="My notes"></app-header>
+  <button (click)="signIn()">Sign In with Google</button>
+<button (click)="getEvents()">Get Calendar Events</button>
+<button (click)="signOut()">Sign Out</button>
+
+<ul>
+  <li *ngFor="let event of events">
+    {{ event.summary }} - {{ event.start.dateTime || event.start.date }}
+  </li>
+</ul>
+</ion-content>

@@ -1,0 +1,23 @@
+<ion-content>
+  <app-header title="My notes"></app-header>
+
+  <!-- Botón para obtener eventos del calendario -->
+  <ion-button expand="block" (click)="getEvents()">Obtener Eventos del Calendario</ion-button>
+
+  <!-- Botón para cerrar sesión -->
+  <ion-button color="danger" expand="block" (click)="signOut()">Cerrar Sesión</ion-button>
+
+  <!-- Mostrar eventos del calendario en una lista -->
+  <ion-list *ngIf="events.length > 0">
+    <ion-item *ngFor="let event of events">
+      <ion-label>
+        <h2>{{ event.summary }}</h2>
+        <p>{{ event.start.dateTime || event.start.date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Mensaje cuando no hay eventos -->
+  <p *ngIf="events.length === 0">No se han encontrado eventos.</p>
+
+</ion-content>

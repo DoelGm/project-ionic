@@ -12,8 +12,6 @@ export class Tab3Page {
 
   constructor(private authService: GoogleCalendarService) { }
 
-  ngOnInit(): void { }
-
   // Iniciar sesión en Google
   signIn() {
     this.authService.signIn().then(() => {

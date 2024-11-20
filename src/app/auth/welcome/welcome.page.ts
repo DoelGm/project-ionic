@@ -22,7 +22,7 @@ export class WelcomePage implements OnInit {
         // Register with Apple / Google to receive push via APNS/FCM
         PushNotifications.register();
       } else {
-        // Show some error
+        console.log("Valio chetos");
       }
     });
 

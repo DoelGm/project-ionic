@@ -15,7 +15,7 @@ export class FcmService {
     }
   }
   private registerPush(){
-    PushNotifications.requestPermissions().then((permission) => {
+    PushNotifications.requestPermissions().then((permission:any) => {
       if (permission.receive === 'granted') {
         PushNotifications.register();
 

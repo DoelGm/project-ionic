@@ -10,7 +10,7 @@ export class FcmService {
   constructor() { }
 
  public initPush(){
-    if(Capacitor.platform != 'web'){
+    if(Capacitor.platform == 'web' && Capacitor.platform != 'web' ){
       this.registerPush();
     }
   }

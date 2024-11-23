@@ -3,5 +3,8 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "ssl": true,
+  "sslKey": "./path/to/ssl.key",
+  "sslCert": "./path/to/ssl.crt"
 }

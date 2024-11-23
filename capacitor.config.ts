@@ -13,6 +13,7 @@ const config: CapacitorConfig = {
       presentationOptions: ['badge', 'sound', 'alert']
     }
   },
+
 cordova:{}
 };
 

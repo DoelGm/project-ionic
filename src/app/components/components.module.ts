@@ -18,6 +18,7 @@ import { CardNotesComponent } from './card-notes/card-notes.component';
     FormsModule,
     CommonModule,
     IonicModule
+    
   ]
 })
 export class ComponentsModule { }

@@ -19,7 +19,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AngularFireMessagingModule,  // Si necesitas mensajería push
     IonicModule.forRoot(),
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register('firebase-messaging-sw.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
     }),

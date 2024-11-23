@@ -3,6 +3,7 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { SwPush } from '@angular/service-worker';
 import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 import { environment } from '../../../environments/environment';
+import { PushNotificationService } from '../../services/push-notification.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -13,17 +14,13 @@ export class Tab1Page implements OnInit {
   constructor(
     private localNotifications: LocalNotifications,
     private afMessaging: AngularFireMessaging,
+    private pushNotificationService: PushNotificationService,
     private swPush: SwPush) {}
+
   ngOnInit(){
     this.requestPermission();  // Solicitar permisos para recibir notificaciones
     this.receiveMessage();
-    this.localNotifications.schedule({
-      id: 1,
-      title: 'Tus notificaciones te esparan',
-      text: 'Este es un recordatorio diario',
-      trigger: { every: { hour: 11, minute: 50 } }, // A las 9:00 AM
-      foreground: true,
-    });
+    this.pushNotificationService.initPushNotifications();
   }
   requestPermission() {
     this.afMessaging.requestPermission
@@ -45,7 +42,14 @@ export class Tab1Page implements OnInit {
       .subscribe({
         next: (message) => {
           console.log('Mensaje recibido:', message);
-          // Aquí puedes procesar el mensaje recibido, como mostrarlo en una notificación
+          const title = message.notification ? message.notification.title : 'Título predeterminado';
+          const body = message.notification ? message.notification.body : 'Cuerpo del mensaje predeterminado';
+          this.localNotifications.schedule({
+            id: 2,  // ID de la notificación (debe ser único)
+            title: title,  // El título del mensaje push
+            text: body,  // El cuerpo del mensaje push
+            data: message,  // Puedes agregar datos adicionales al mensaje, si lo deseas
+          });
         },
         error: (err) => {
           console.error('Error al recibir el mensaje:', err);

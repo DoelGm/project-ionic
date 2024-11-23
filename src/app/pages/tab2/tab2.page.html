@@ -1,54 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Nueva Nota</ion-title>
+    <ion-title>{{ isEditing ? 'Editar Nota' : 'Crear Nota' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-textarea
-      placeholder="Título de la nota"
-      rows="1"
-      maxlength="100">
-    </ion-textarea>
-  </ion-item><ion-header>
-    <ion-toolbar>
-      <ion-title>Nueva Nota</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
+<ion-content class="ion-padding">
+  <form (submit)="saveNote(); $event.preventDefault()">
     <ion-item>
-      <ion-textarea
-        placeholder="Título de la nota"
-        rows="1"
-        maxlength="100">
-      </ion-textarea>
+      <ion-label position="floating">Título</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="note.title"
+        name="title"
+        required
+      ></ion-input>
     </ion-item>
 
     <ion-item>
+      <ion-label position="floating">Contenido</ion-label>
       <ion-textarea
-        placeholder="Escribe tu nota aquí..."
-        rows="10"
-        auto-grow="true">
-      </ion-textarea>
+        [(ngModel)]="note.content"
+        name="content"
+        required
+      ></ion-textarea>
     </ion-item>
 
-    <ion-button expand="block" class="ion-margin">
-      Guardar notas
+    <ion-button expand="block" type="submit" color="primary">
+      {{ isEditing ? 'Actualizar Nota' : 'Crear Nota' }}
     </ion-button>
-  </ion-content>
-
-
-  <ion-item>
-    <ion-textarea
-      placeholder="Escribe tu nota justo aquí..."
-      rows="10"
-      auto-grow="true">
-    </ion-textarea>
-  </ion-item>
-
-  <ion-button expand="block" class="ion-margin">
-    Guardar notas
-  </ion-button>
+  </form>
 </ion-content>

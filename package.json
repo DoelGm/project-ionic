@@ -36,6 +36,7 @@
     "@capacitor/status-bar": "6.0.1",
     "@ionic/angular": "^8.0.0",
     "angular-calendar": "^0.31.1",
+    "axios": "^1.7.7",
     "cordova-plugin-local-notification": "^1.0.0",
     "date-fns": "^4.1.0",
     "firebase": "^10.14.1",

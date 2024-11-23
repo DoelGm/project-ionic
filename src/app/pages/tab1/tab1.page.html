@@ -1,12 +1,30 @@
 <ion-content>
-  <app-header title="Home"></app-header>
-  <app-card-notes class="ion-padding" date="Lunes"></app-card-notes>
-  <app-card-notes class="ion-padding" date="Martes"></app-card-notes>
-  <app-card-notes class="ion-padding" date="Miercoles"></app-card-notes>
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <app-header title="Notas"></app-header>
+
+  <!-- Renderizado dinámico de notas -->
+  <ng-container *ngIf="notes && notes.length > 0; else noNotes">
+    <card-notes
+      *ngFor="let note of notes"
+      [date]="note.date"
+      [title]="note.title"
+      [subtitle]="'Nota importante'"
+      [content]="note.content">
+      <!-- Botones de editar y eliminar -->
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="editNote(note)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="deleteNote(note._id)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </card-notes>
+  </ng-container>
+
+  <!-- Mensaje cuando no hay notas -->
+  <ng-template #noNotes>
+    <p class="ion-text-center">No hay notas disponibles.</p>
+  </ng-template>
+
 
 </ion-content>

@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../../components/explore-contai
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import { ComponentsModule } from "../../components/components.module";
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentsModule } from "../../components/components.module";
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    RouterModule.forChild([{ path: '', component: Tab2Page }]),
   ],
   declarations: [Tab2Page]
 })

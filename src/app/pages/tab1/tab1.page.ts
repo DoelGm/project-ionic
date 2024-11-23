@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { SwPush } from '@angular/service-worker';
-import { LocalNotifications } from '@awesome-cordova-plugins/local-notifications/ngx';
 import { PushNotificationService } from '../../services/push-notification.service';
 @Component({
   selector: 'app-tab1',
@@ -9,13 +6,9 @@ import { PushNotificationService } from '../../services/push-notification.servic
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
-  culo = 'hola';
+
   constructor(
-    private localNotifications: LocalNotifications,
-    private afMessaging: AngularFireMessaging,
-    private pushNotificationService: PushNotificationService,
-    private webPushService: PushNotificationService,
-    private swPush: SwPush) {}
+    private webPushService: PushNotificationService,) {}
 
 
   ngOnInit(){
@@ -25,21 +18,5 @@ export class Tab1Page implements OnInit {
     });
 
   }
-
-
-
-  // Función para manejar la suscripción a las notificaciones
-  // subscribeToNotifications() {
-  //   if (this.swPush.isEnabled) {
-  //     this.swPush.requestSubscription({
-  //       serverPublicKey: environment.pushNotificationPublicKey // Usar una clave pública del servidor para suscripción
-  //     })
-  //     .then(subscription => {
-  //       console.log('Suscripción recibida:', subscription);
-  //       // Aquí puedes enviar la suscripción al servidor para guardar
-  //     })
-  //     .catch(err => console.error('Error al suscribirse a las notificaciones', err));
-  //   }
-  // }
 
 }

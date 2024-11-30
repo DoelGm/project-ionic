@@ -6,41 +6,43 @@ import { gapi } from 'gapi-script';
 })
 export class GoogleCalendarService {
   private CLIENT_ID = '210607278507-gtspl2pcqu26u18i9762498o5ipvpi77.apps.googleusercontent.com';
-  private API_KEY = 'AIzaSyD-OG4KnJqKz5bf2gHeNYsb08moMkd_2p0';
-  private DISCOVERY_DOCS = [
-    'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
-  ];
   private SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+  private REDIRECT_URI = 'http://localhost:8100';
 
-  constructor() {
-    gapi.load('client:auth2', this.initClient.bind(this));
-  }
-  private async initClient() {
-    await gapi.client.init({
-      apiKey: this.API_KEY,
-      clientId: this.CLIENT_ID,
-      discoveryDocs: this.DISCOVERY_DOCS,
-      scope: this.SCOPES,
-    });
-    gapi.auth2.getAuthInstance().signIn({ prompt: 'select_account' });
+  constructor() {}
+
+  // Redirige al usuario para autenticarse
+  signIn() {
+    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${this.CLIENT_ID}&redirect_uri=${this.REDIRECT_URI}&response_type=token&scope=${encodeURIComponent(
+      this.SCOPES
+    )}&include_granted_scopes=true`;
+    window.location.href = authUrl; // Redirige al usuario
   }
 
-
-  async signIn() {
-    const authInstance = gapi.auth2.getAuthInstance();
-    await authInstance.signIn();
+  // Procesa el token después del redireccionamiento
+  handleRedirect(): string | null {
+    const fragment = new URLSearchParams(window.location.hash.substring(1));
+    const accessToken = fragment.get('access_token');
+    return accessToken;
   }
 
-  async getEvents() {
-    const response = await gapi.client.calendar.events.list({
-      calendarId: 'primary',
-      timeMin: new Date().toISOString(),
-      showDeleted: false,
-      singleEvents: true,
-      orderBy: 'startTime',
-      maxResults: 10
-    });
-    return response.result.items;
+  // Obtiene eventos del calendario
+  async getEvents(accessToken: string) {
+    const response = await fetch(
+      'https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=' +
+        new Date().toISOString() +
+        '&singleEvents=true&orderBy=startTime',
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Error al obtener eventos');
+    }
+    return await response.json();
   }
 
 }

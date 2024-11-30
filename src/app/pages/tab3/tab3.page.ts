@@ -39,7 +39,7 @@ export class Tab3Page implements OnInit {
   async loadEvents() {
     try {
       await this.calendarService.signIn();
-      this.events = await this.calendarService.getEvents();
+ 
     } catch (error) {
       console.error('Error al cargar eventos:', error);
     }

@@ -1,0 +1,39 @@
+{
+  "name": "app",
+  "short_name": "app",
+  "theme_color": "#1976d2",
+  "background_color": "#fafafa",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icon/favicon.png",
+      "sizes": "84x104",
+      "type": "84x104",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon/welcome.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    }
+
+  ],
+  "screenshots": [
+    {
+      "src": "assets/screenshot-wide.jpg",
+      "sizes": "1280x582",
+      "type": "image/png",
+      "platform": "desktop",
+      "form_factor": "wide"
+    },
+    {
+      "src": "assets/screenshot-mobile.jpg",
+      "sizes": "720x1600",
+      "type": "image/png",
+      "platform": "mobile"
+    }
+  ]
+}

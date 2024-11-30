@@ -2,34 +2,55 @@
   <ion-header>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/welcome"></ion-back-button>
-      <h3>Inicio de sesion</h3>
+      <h3>Inicio de sesión</h3>
     </ion-buttons>
-
   </ion-header>
 
+  <div class="ion-padding">
+    <ion-card>
+      <ion-text color="dark">
+        <h1 class="ion-padding">Bienvenido a la mejor app de notas</h1>
+      </ion-text>
+      <h2 class="ion-padding">
+        Inicia sesión para poder crear grandes recordatorios :)
+      </h2>
 
+      <ion-input
+        color="dark"
+        type="email"
+        class="ion-padding"
+        label="Email"
+        labelPlacement="floating"
+        placeholder="Ingresa tu email"
+        required
+      ></ion-input>
+      <ion-input
+        color="dark"
+        type="password"
+        class="ion-padding"
+        label="Contraseña"
+        labelPlacement="floating"
+        placeholder="Ingresa tu contraseña"
+        required
+      ></ion-input>
+      <div class="ion-text-center ion-padding">
+        <ion-button color="dark" expand="block" routerLink="../tabs">
+          Inicia sesión
+        </ion-button>
+      </div>
+      <div class="ion-text-center ion-padding">
+        <ion-button color="dark" expand="block" (click)="loginWithGoogle()">
+          Inicia sesión con Google
+        </ion-button>
 
-    <div class="ion-padding">
-      <ion-card>
-        <ion-text color="dark">
-          <h1 class="ion-padding">Bienvenido a la mejor app de notas</h1>
-        </ion-text>
-        <h2 class="ion-padding">Inicia sesion para poder crear grandes recordatorios :)</h2>
-
-        <ion-input color="dark" type="email" class="ion-padding" label="Email" labelPlacement="floating" placeholder="Ingresa tu email" required></ion-input>
-        <ion-input color="dark" type="password" class="ion-padding" label="Contraseña" labelPlacement="floating" placeholder="Ingresa tu contraseña" required ></ion-input>
-        <div class="ion-text-center ion-padding">
-          <ion-button color="dark" expand="block" routerLink="../tabs">Inicia sesión</ion-button>
-        </div>
-        <div class="ion-text-center ion-padding">
-          <ion-button color="dark" expand="block"  routerLink="../tabs">Inicia sesión con google</ion-button>
-        </div>
-        <p class="ion-text-end ion-padding">¿Olvidaste tu contraseña? Recuperala <a routerLink="../recover-password">aquí</a></p>
-        <p class="ion-text-end ion-padding">¿No tienes una cuenta? <a routerLink="/register">Registrate aqui!</a></p>
-      </ion-card>
-
-
-    </div>
-
-
+      </div>
+      <p class="ion-text-end ion-padding">
+        ¿Olvidaste tu contraseña? Recupérala
+        <a routerLink="../recover-password">aquí</a>
+      </p>
+      <p class="ion-text-end ion-padding">
+        ¿No tienes una cuenta? <a routerLink="/register">Regístrate aquí</a>
+      </p>
+    </ion-card>
+  </div>
 </body>

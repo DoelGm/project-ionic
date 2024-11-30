@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+
 export const environment = {
   production: false,
   firebaseConfig: {
@@ -11,5 +11,4 @@ export const environment = {
     vapidKey: "BMqFiG1mnFDSVtv4CRZmY0DEsHntZKAt_g-SnEJVJmHl4uwt51BajrJhUA_m3i8VkLKpTtqFyGhU04QiiKjvH1s"
   }
 };
-// Initialize Firebase
-const app = initializeApp(environment.firebaseConfig);
+

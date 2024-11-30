@@ -5,7 +5,7 @@ import { GoogleCalendarService } from 'src/app/services/google-calendar.service'
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  styleUrls: ['tab3.page.scss'],
 })
 export class Tab3Page implements OnInit {
   user: any = null;
@@ -16,9 +16,12 @@ export class Tab3Page implements OnInit {
     private calendarService: GoogleCalendarService
   ) {}
 
-  ngOnInit() {
-    this.authService.getCurrentUser().subscribe(user => {
+  async ngOnInit() {
+    this.authService.getCurrentUser().subscribe((user) => {
       this.user = user;
+      if (this.user) {
+        this.loadEvents(); // Cargar eventos al iniciar si el usuario está autenticado
+      }
     });
   }
 
@@ -38,8 +41,7 @@ export class Tab3Page implements OnInit {
 
   async loadEvents() {
     try {
-      await this.calendarService.signIn();
- 
+      this.events = await this.calendarService.getEvents();
     } catch (error) {
       console.error('Error al cargar eventos:', error);
     }

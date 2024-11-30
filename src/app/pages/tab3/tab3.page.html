@@ -1,12 +1,26 @@
-<ion-content>
-  <app-header title="My notes"></app-header>
-  <button (click)="signIn()">Sign In with Google</button>
-<button (click)="getEvents()">Get Calendar Events</button>
-<button (click)="signOut()">Sign Out</button>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Google Calendar</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<ul>
-  <li *ngFor="let event of events">
-    {{ event.summary }} - {{ event.start.dateTime || event.start.date }}
-  </li>
-</ul>
+<ion-content>
+  <div *ngIf="!user">
+    <ion-button expand="full" (click)="login()">Iniciar sesión con Google</ion-button>
+  </div>
+
+  <div *ngIf="user">
+    <p>Bienvenido, {{ user.displayName }}</p>
+    <ion-button expand="full" (click)="loadEvents()">Cargar eventos</ion-button>
+    <ion-button color="danger" expand="full" (click)="logout()">Cerrar sesión</ion-button>
+
+    <ion-list>
+      <ion-item *ngFor="let event of events">
+        <ion-label>
+          <h2>{{ event.summary }}</h2>
+          <p>{{ event.start?.dateTime || event.start?.date }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

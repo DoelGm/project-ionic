@@ -10,13 +10,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),  // Usar 'AngularFireModule'
     AngularFireMessagingModule,  // Si necesitas mensajería push
+    AngularFireAuthModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     ServiceWorkerModule.register('firebase-messaging-sw.js', {

@@ -11,7 +11,7 @@ export class Tab1Page implements OnInit {
 
   constructor(private noteService: NoteService) {}
 
-  async ngOnInit() {
+   ngOnInit() {
     this.loadNotes();
   }
 

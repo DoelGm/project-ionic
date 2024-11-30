@@ -5,71 +5,42 @@ import { gapi } from 'gapi-script';
   providedIn: 'root'
 })
 export class GoogleCalendarService {
-  private gapiSetup: boolean = false;
-  private authInstance: gapi.auth2.GoogleAuth | undefined;
-  public user: gapi.auth2.GoogleUser | null = null; // Usar un tipo más específico
+  private CLIENT_ID = '210607278507-gtspl2pcqu26u18i9762498o5ipvpi77.apps.googleusercontent.com';
+  private API_KEY = 'AIzaSyD-OG4KnJqKz5bf2gHeNYsb08moMkd_2p0';
+  private DISCOVERY_DOCS = [
+    'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
+  ];
+  private SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 
-  constructor() { }
-
-  // Cargar la API de Google
-  async initGoogleAuth(): Promise<void> {
-    if (!this.gapiSetup) {
-      await new Promise<void>((resolve, reject) => {
-        gapi.load('client:auth2', () => {
-          resolve();
-        });
-      });
-
-      await gapi.client.init({
-        apiKey: 'AIzaSyCiefhKhwxjP59HK6Qd4sQOqWLNADitEe4',
-        clientId: '76129765560-noa1dns67tkj60qb8dun29h61kq7rjq8.apps.googleusercontent.com',
-        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'],
-        scope: 'https://www.googleapis.com/auth/calendar'
-      });
-
-      this.authInstance = gapi.auth2.getAuthInstance();
-      this.gapiSetup = true;
-    }
+  constructor() {
+    gapi.load('client:auth2', this.initClient.bind(this));
   }
-
-  // Iniciar sesión con Google
-  async signIn(): Promise<void> {
-    await this.initGoogleAuth();
-    try {
-      this.user = await this.authInstance!.signIn(); // Usa el operador de aserción no nulo
-    } catch (error) {
-      console.error('Error during sign in:', error);
-    }
-  }
-
-  // Cerrar sesión
-  signOut(): void {
-    if (this.authInstance) {
-      this.authInstance.signOut();
-      this.user = null;
-    }
-  }
-
-  // Obtener eventos del calendario
-  async getCalendarEvents(): Promise<any> {
-    if (!this.gapiSetup) {
-      await this.initGoogleAuth();
-    }
-  
-    const response = await gapi.client.calendar.events.list({
-      'calendarId': 'primary',
-      'timeMin': (new Date()).toISOString(),
-      'showDeleted': false,
-      'singleEvents': true,
-      'maxResults': 10,
-      'orderBy': 'startTime'
+  private async initClient() {
+    await gapi.client.init({
+      apiKey: this.API_KEY,
+      clientId: this.CLIENT_ID,
+      discoveryDocs: this.DISCOVERY_DOCS,
+      scope: this.SCOPES,
     });
-  
-    // Verificar si la respuesta tiene 'result'
-    if (!response || !response.result) {
-      throw new Error('Invalid response from Google Calendar API');
-    }
-  
-    return response;
+    gapi.auth2.getAuthInstance().signIn({ prompt: 'select_account' });
   }
+
+
+  async signIn() {
+    const authInstance = gapi.auth2.getAuthInstance();
+    await authInstance.signIn();
+  }
+
+  async getEvents() {
+    const response = await gapi.client.calendar.events.list({
+      calendarId: 'primary',
+      timeMin: new Date().toISOString(),
+      showDeleted: false,
+      singleEvents: true,
+      orderBy: 'startTime',
+      maxResults: 10
+    });
+    return response.result.items;
+  }
+
 }

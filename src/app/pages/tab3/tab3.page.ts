@@ -1,41 +1,47 @@
-import { Component } from '@angular/core';
-// Asegúrate de que la ruta sea correcta
-import { GoogleCalendarService } from '../../services/google-calendar.service'; // Ajusta la ruta según la estructura
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { GoogleCalendarService } from 'src/app/services/google-calendar.service';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
+  user: any = null;
   events: any[] = [];
 
-  constructor(private authService: GoogleCalendarService) { }
+  constructor(
+    private authService: AuthService,
+    private calendarService: GoogleCalendarService
+  ) {}
 
-  // Iniciar sesión en Google
-  signIn() {
-    this.authService.signIn().then(() => {
-      console.log('Signed in successfully');
-    }).catch((err) => {
-      console.error('Error signing in', err);
+  ngOnInit() {
+    this.authService.getCurrentUser().subscribe(user => {
+      this.user = user;
     });
   }
 
-  // Obtener eventos del calendario
-  async getEvents() {
-  try {
-    const response = await this.authService.getCalendarEvents();
-    console.log('API Response:', response); // Agrega esta línea
-    this.events = response.result.items; // Asegúrate de que 'result' existe
-    console.log('Events:', this.events);
-  } catch (err) {
-    console.error('Error fetching events', err);
+  async login() {
+    try {
+      await this.authService.loginWithGoogle();
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+    }
   }
-}
 
-  // Cerrar sesión
-  signOut() {
-    this.authService.signOut();
-    console.log('Signed out');
+  async logout() {
+    await this.authService.logout();
+    this.user = null;
+    this.events = [];
+  }
+
+  async loadEvents() {
+    try {
+      await this.calendarService.signIn();
+      this.events = await this.calendarService.getEvents();
+    } catch (error) {
+      console.error('Error al cargar eventos:', error);
+    }
   }
 }

@@ -36,9 +36,9 @@ export class FcmService {
     'pushNotificationReceived',
     (notification: PushNotificationSchema) => {
       console.log('Notificación recibida:', JSON.stringify(notification));
-    }
-    );
-  }
+   }
+  );
+ }
 }
 
 

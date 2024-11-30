@@ -6,24 +6,39 @@
       "name": "app",
       "installMode": "prefetch",
       "resources": {
+
         "files": [
           "/favicon.ico",
           "/index.csr.html",
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/*.ttf",
+          "/assets/*",
+          "/assets/svg/*.svg",
+          "/svg/book.svg",
+          "/svg/pin.svg",
+          "/svg/home.svg",
+          "/svg/calendar.svg",
+          "/svg/logo-octocat.svg",
+          "/svg/log-out.svg",
+          "/svg/time.svg"
         ]
       }
-    },
+    }
+  ],
+  "dataGroups": [
     {
-      "name": "assets",
-      "installMode": "lazy",
-      "updateMode": "prefetch",
-      "resources": {
-        "files": [
-          "/**/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
-        ]
+      "name": "api",
+      "urls": [
+       "http://localhost:3000"
+      ],
+      "cacheConfig":{
+        "strategy": "freshness",
+        "maxSize": 5,
+        "maxAge": "50m",
+        "timeout": "5s"
       }
     }
   ]
